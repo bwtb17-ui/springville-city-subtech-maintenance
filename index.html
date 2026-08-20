@@ -8,6 +8,26 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <section id="loginScreen" class="login-screen">
+    <div class="login-card">
+      <div class="login-brand">
+        <div class="brand-mark"><span class="bolt">⚡</span></div>
+        <div>
+          <div class="city-name">SPRINGVILLE CITY</div>
+          <h1>Subtech Maintenance</h1>
+        </div>
+      </div>
+      <p class="login-help">Sign in to the shared maintenance list.</p>
+      <form id="loginForm">
+        <label>Email<input id="loginEmail" type="email" autocomplete="username" required></label>
+        <label>Password<input id="loginPassword" type="password" autocomplete="current-password" required></label>
+        <button class="primary-btn" type="submit">Sign In</button>
+      </form>
+      <div id="loginMessage" class="login-message"></div>
+    </div>
+  </section>
+
+  <div id="appShell" class="hidden">
   <header class="app-header">
     <div class="brand-wrap">
       <div class="brand-mark" aria-hidden="true">
@@ -19,10 +39,17 @@
         <p>Maintenance tasks prioritized by due date</p>
       </div>
     </div>
-    <button id="addTaskBtn" class="primary-btn header-add">+ Add Task</button>
+    <div class="header-actions">
+      <button id="addTaskBtn" class="primary-btn header-add">+ Add Task</button>
+      <button id="signOutBtn" class="header-secondary">Sign Out</button>
+    </div>
   </header>
 
   <main>
+    <div class="user-strip">
+      <span id="signedInAs"></span>
+      <span id="syncStatus">Connecting to shared database…</span>
+    </div>
     <section class="toolbar">
       <input id="searchInput" type="search" placeholder="Search location, task, or part #..." />
       <select id="filterSelect">
@@ -102,7 +129,9 @@
       </div>
     </form>
   </dialog>
+  </div>
 
+  <script src="config.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
