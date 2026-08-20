@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#1f2937" />
+  <title>Springville City Subtech Maintenance</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand-wrap">
+      <div class="brand-mark" aria-hidden="true">
+        <span class="bolt">⚡</span>
+      </div>
+      <div>
+        <div class="city-name">SPRINGVILLE CITY</div>
+        <h1>Subtech Maintenance</h1>
+        <p>Maintenance tasks prioritized by due date</p>
+      </div>
+    </div>
+    <button id="addTaskBtn" class="primary-btn header-add">+ Add Task</button>
+  </header>
+
+  <main>
+    <section class="toolbar">
+      <input id="searchInput" type="search" placeholder="Search location, task, or part #..." />
+      <select id="filterSelect">
+        <option value="all">All tasks</option>
+        <option value="overdue">Overdue</option>
+        <option value="dueSoon">Due soon</option>
+        <option value="current">Current</option>
+      </select>
+    </section>
+
+    <section id="taskList" class="task-list"></section>
+
+    <section id="emptyState" class="empty-state hidden">
+      <h2>No maintenance tasks yet</h2>
+      <p>Tap “Add Task” to create your first maintenance item.</p>
+    </section>
+  </main>
+
+  <dialog id="taskDialog">
+    <form id="taskForm" method="dialog">
+      <div class="dialog-header">
+        <h2 id="formTitle">Add Maintenance Task</h2>
+        <button type="button" id="closeDialogBtn" class="icon-btn" aria-label="Close">×</button>
+      </div>
+
+      <input type="hidden" id="taskId" />
+
+      <label>
+        Location
+        <input id="location" type="text" required placeholder="Example: Generator Building" />
+      </label>
+
+      <label>
+        Task
+        <textarea id="taskName" required rows="3" placeholder="Example: Replace air filters"></textarea>
+      </label>
+
+      <label>
+        Part # <span class="optional">(optional)</span>
+        <input id="partNumber" type="text" placeholder="Example: AF-12345" />
+      </label>
+
+      <div class="two-column">
+        <label>
+          Maintenance interval
+          <input id="intervalValue" type="number" min="1" required value="30" />
+        </label>
+
+        <label>
+          Interval unit
+          <select id="intervalUnit" required>
+            <option value="days">Days</option>
+            <option value="weeks">Weeks</option>
+            <option value="months" selected>Months</option>
+            <option value="years">Years</option>
+          </select>
+        </label>
+      </div>
+
+      <label>
+        Last completed
+        <input id="lastCompleted" type="date" required />
+      </label>
+
+      <div class="calculated-due">
+        Next due: <strong id="nextDuePreview">—</strong>
+      </div>
+
+      <label>
+        Notes <span class="optional">(optional)</span>
+        <textarea id="notes" rows="3" placeholder="Any extra information..."></textarea>
+      </label>
+
+      <div class="form-actions">
+        <button type="button" id="cancelBtn" class="secondary-btn">Cancel</button>
+        <button type="submit" class="primary-btn">Save Task</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
